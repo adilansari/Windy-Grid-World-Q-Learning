@@ -22,14 +22,10 @@ Q= zeros(row,col,4);
 newQ= ones(row,col,4) * inf; %for convergence
 temp= zeros(row,col,8); %temp array for printing purpose
 
-%CreateGrid(row, col)
-%setStart(start.row, start.col, row,col)
-%setGoal(goal.row, goal.col, row, col)
-%ParseArrows(wind, row, col)  %drawing wind arrows
 
 action=0;
 iteration = 1;
-%toprint = [10 40 90 150 400 800 1000];
+
 rewardVector= zeros(1,5000);
 for count= 1:5000
     current=start;
@@ -83,8 +79,7 @@ for count= 1:5000
     [maxQ, nextAction] = max(Q(next.row, next.col, :));   
     currentQ = Q(current.row, current.col, action);
     Q(current.row, current.col, action) = currentQ + alpha* (rewardNew + (gamma*maxQ) - currentQ);
-%     %---------------------------
-    
+
     %converge here--------------------
     if sum(sum(abs(newQ-Q))) < 0.0001 & sum(sum(Q>0)) & (iteration > 1000)
         printEpisode(Q,row,col,start,goal,wind,iteration);
@@ -99,18 +94,8 @@ for count= 1:5000
     else
         newQ=Q;
     end
-    %---------------------------------
+    
     iteration = iteration + 1;
-   % if(iteration == 10), printEpisode(Q,row,col,start,goal,wind,iteration);    end
-  %  if(iteration == 40), printEpisode(Q,row,col,start,goal,wind,iteration);    end
-   % if(iteration == 90), printEpisode(Q,row,col,start,goal,wind,iteration);    end
-    %if(iteration == 150), printEpisode(Q,row,col,start,goal,wind,iteration);    end
-   % if(iteration == 400), printEpisode(Q,row,col,start,goal,wind,iteration);    end
-    %if(iteration == 800), printEpisode(Q,row,col,start,goal,wind,iteration);    end
-    %if(iteration == 1000)
-     %   printEpisode(Q,row,col,start,goal,wind,iteration);    end
-%     if(iteration == 49999)
-%         printEpisode(Q,row,col,start,goal,wind,iteration);    end
 end
 
 function var = isOverlap(first,second)
@@ -120,11 +105,9 @@ if (var == 0)
 end
 
 function [pos, temp] = getNext(current, action, wind, temp, row, col)
-%windFlag = 0;
 actIndex = action;
 pos = current;
 if (wind(current.row, current.col) == 0)
-    %windFlag = 0;
     switch action
         case 1 %east
             pos.col= current.col + 1;
@@ -136,7 +119,6 @@ if (wind(current.row, current.col) == 0)
             pos.row= current.row - 1;
     end
 else
-    %windFlag = 1;
     switch action
         case 1 %northeast
             pos.col= current.col + 1;
@@ -170,6 +152,7 @@ function printEpisode(Q,row,col,start,goal,wind,iteration)
 temp2 = zeros(row,col,8);
 current= start;
 'Optimal Path :'
+'Start'
 current
         for i = 1: 100
             [tempMax, act2] = max(Q(current.row,current.col,:));
