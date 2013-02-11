@@ -4,7 +4,7 @@
 
 Problem:
 
-![Windy Grid World](https://github.com/adilansari/Windy-Grid-World-Q-Learning/images/Problem.jpg)
+![Windy Grid World](https://github.com/adilansari/Windy-Grid-World-Q-Learning/blob/master/images/Problem.jpg)
 
 This assignment is to use Reinforcement Learning to solve the following "Windy Grid World" problem illustrated in the above picture. Each cell in the image is a state. There are four actions: move up, down, left, and right. This is a deterministic domain -- each action deterministically moves the agent one cell in the direction indicated. If the agent is on the boundary of the world and executes an action that would move it "off" of the world, it remains on the grid in the same cell from which it executed the action.
 
@@ -25,4 +25,4 @@ rate of 0.1 and a discount rate of 0.9.
 
 Optimal Solution obtained after convergence as per policy:
 
-![Solution - Obtained Path](https://github.com/adilansari/Windy-Grid-World-Q-Learning/images/Solution.jpg)
+![Solution - Obtained Path](https://github.com/adilansari/Windy-Grid-World-Q-Learning/blob/master/images/Solution.jpg)
